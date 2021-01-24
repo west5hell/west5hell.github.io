@@ -51,3 +51,4 @@ deinit {
 
     ![](https://d33wubrfki0l68.cloudfront.net/02787f5f5a4704667b633bcc88184c50672878ec/b4396/images/debug-deinit-breakpoint-options.png)
 
+原文链接[Easy way to detect a retain cycle in a view controller](https://sarunw.com/posts/easy-way-to-detect-retain-cycle-in-view-controller/)
