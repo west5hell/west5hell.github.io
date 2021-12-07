@@ -1,7 +1,8 @@
 ---
-layout: post
-title:  RxSwift Filtering Operators（筛选操作符）
-date:   2021-12-6
+layout:     post
+title:      RxSwift Filtering Operators（筛选操作符）
+date:       2021-12-06
+categories: RxSwift
 ---
 
 ### Ignoring operators（忽略操作符）
@@ -9,22 +10,22 @@ date:   2021-12-6
 
 
 ```
-    let strikes = PublishSubject<String>()
+let strikes = PublishSubject<String>()
     
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    strikes
-        .ignoreElements()
-        .subscribe { _ in
-            print("You're out")
-        }
-        .disposed(by: disposeBag)
+strikes
+    .ignoreElements()
+    .subscribe { _ in
+        print("You're out")
+    }
+    .disposed(by: disposeBag)
     
-    strikes.onNext("X")
-    strikes.onNext("Y")
-    strikes.onNext("Z")
+strikes.onNext("X")
+strikes.onNext("Y")
+strikes.onNext("Z")
     
-    strikes.onCompleted()
+strikes.onCompleted()
 ```
 
 如果将 `.ignoreElements()` 注释掉，会输出：
@@ -46,22 +47,22 @@ You're out
 
 忽略除输入的索引以外的事件（不包括终止事件）
 ```
-    let strikes = PublishSubject<String>()
+let strikes = PublishSubject<String>()
     
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    strikes
-        .element(at: 1)
-        .subscribe { e in
-            print(e)
-        }
-        .disposed(by: disposeBag)
+strikes
+    .element(at: 1)
+    .subscribe { e in
+        print(e)
+    }
+    .disposed(by: disposeBag)
     
-    strikes.onNext("X")
-    strikes.onNext("Y")
-    strikes.onNext("Z")
+strikes.onNext("X")
+strikes.onNext("Y")
+strikes.onNext("Z")
     
-    strikes.onCompleted()
+strikes.onCompleted()
 ```
 
 输出：
@@ -74,16 +75,16 @@ completed
 3. `filter` 需要一个闭包作为过滤的条件
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of(1, 2, 3, 4, 5, 6)
-        .filter { element in
-            element.isMultiple(of: 2)
-        }
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of(1, 2, 3, 4, 5, 6)
+    .filter { element in
+        element.isMultiple(of: 2)
+    }
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 
 输出：
@@ -96,14 +97,14 @@ completed
 4. `skip` 跳过操作符
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of("A", "B", "C", "D", "E", "F")
-        .skip(3)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of("A", "B", "C", "D", "E", "F")
+    .skip(3)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 
 输出：
@@ -116,14 +117,14 @@ F
 5. `skip(while: )` 跳过满足条件的元素，直到不满足条件，然后输出元素
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of(2, 2, 3, 4, 5)
-        .skip(while: { $0.isMultiple(of: 2) })
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of(2, 2, 3, 4, 5)
+    .skip(while: { $0.isMultiple(of: 2) })
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 
 输出：
@@ -137,22 +138,22 @@ F
 
 持续跳过源可观察序列，直到其他观察序列发射事件（非终止事件）出来
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    let subject = PublishSubject<String>()
-    let trigger = PublishSubject<String>()
+let subject = PublishSubject<String>()
+let trigger = PublishSubject<String>()
     
-    subject
-        .skip(until: trigger)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+subject
+    .skip(until: trigger)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
     
-    subject.onNext("A")
-    subject.onNext("B")
-    trigger.onNext("X")
-    subject.onNext("C")
+subject.onNext("A")
+subject.onNext("B")
+trigger.onNext("X")
+subject.onNext("C")
 ```
 输出：
 ```
@@ -162,14 +163,14 @@ C
 7. `take(_ count: Int)` 与 `skip` 相反，忽略`count`之后的元素
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of(1, 2, 3, 4, 5, 6)
-        .take(3)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of(1, 2, 3, 4, 5, 6)
+    .take(3)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 输出：
 ```
@@ -181,14 +182,14 @@ C
 8. `take(while: Closure)` 与 `skip(while: )` 类似，但效果相反
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of(1, 11, 2, 32, 4, 33, 46)
-        .take(while: { $0 < 30 })
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of(1, 11, 2, 32, 4, 33, 46)
+    .take(while: { $0 < 30 })
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 输出：
 ```
@@ -198,17 +199,17 @@ C
 ```
 如果想使用发射的元素的索引，可以使用枚举操作符`enumerated`
 ```
-    let disposeBag = DisposeBag()
-    Observable.of(2, 2, 4, 4, 6, 6)
-        .enumerated()
-        .take(while: { index, integer in
-            integer.isMultiple(of: 2) && index < 3
-        })
-        .map(\.element)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+let disposeBag = DisposeBag()
+Observable.of(2, 2, 4, 4, 6, 6)
+    .enumerated()
+    .take(while: { index, integer in
+        integer.isMultiple(of: 2) && index < 3
+    })
+    .map(\.element)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 输出：
 ```
@@ -220,14 +221,14 @@ C
 9. `take(until: , behavior: TakeBehavior = .exclusive)` 获取元素直到满足预测条件
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    Observable.of(1, 11, 2, 32, 4, 33, 46)
-        .take(until: { $0.isMultiple(of: 4) }, behavior: .inclusive)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of(1, 11, 2, 32, 4, 33, 46)
+    .take(until: { $0.isMultiple(of: 4) }, behavior: .inclusive)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 
 输出：
@@ -249,21 +250,21 @@ C
 ```
 let disposeBag = DisposeBag()
     
-    let subject = PublishSubject<String>()
-    let trigger = PublishSubject<String>()
+let subject = PublishSubject<String>()
+let trigger = PublishSubject<String>()
     
-    subject
-        .take(until: trigger)
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+subject
+    .take(until: trigger)
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
     
-    subject.onNext("1")
-    subject.onNext("2")
+subject.onNext("1")
+subject.onNext("2")
     
-    trigger.onNext("X")
-    subject.onNext("3")
+trigger.onNext("X")
+subject.onNext("3")
 ```
 输出：
 ```
@@ -276,12 +277,12 @@ let disposeBag = DisposeBag()
 ```
 let disposeBag = DisposeBag()
     
-    Observable.of("A", "A", "B", "B", "A")
-        .distinctUntilChanged()
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+Observable.of("A", "A", "B", "B", "A")
+    .distinctUntilChanged()
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 输出：
 ```
@@ -295,29 +296,29 @@ A
 如果事件传递的元素符合 Equatable，可以选择使用 `distinctUntilChanged(_:)`来提供你自己的自定义逻辑测试相等，传递的参数是一个比较器。
 
 ```
-    let disposeBag = DisposeBag()
+let disposeBag = DisposeBag()
     
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .spellOut
+let formatter = NumberFormatter()
+formatter.numberStyle = .spellOut
     
-    Observable<NSNumber>.of(10, 110, 20, 200, 210, 310)
-        .distinctUntilChanged { a, b in
-            guard let aWords = formatter.string(from: a)?.components(separatedBy: " "),
-                  let bWords = formatter.string(from: b)?.components(separatedBy: " ") else {
-                return false
-            }
-            
-            var containMatch = false
-            for aWord in aWords where bWords.contains(aWord) {
-                containMatch = true
-                break
-            }
-            return containMatch
+Observable<NSNumber>.of(10, 110, 20, 200, 210, 310)
+    .distinctUntilChanged { a, b in
+        guard let aWords = formatter.string(from: a)?.components(separatedBy: " "),
+              let bWords = formatter.string(from: b)?.components(separatedBy: " ") else {
+            return false
         }
-        .subscribe(onNext: {
-            print($0)
-        })
-        .disposed(by: disposeBag)
+        
+        var containMatch = false
+        for aWord in aWords where bWords.contains(aWord) {
+            containMatch = true
+            break
+        }
+        return containMatch
+    }
+    .subscribe(onNext: {
+        print($0)
+    })
+    .disposed(by: disposeBag)
 ```
 输出：
 ```
