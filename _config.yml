@@ -6,7 +6,7 @@ email: dozeuto@gmail.com # email of site's author
 description: > # description of the site (multiple lines allowed)
   A (nearly) no-CSS, fast, minimalist Jekyll theme.
 twitter_username: pekanchuan
-github_username: pekanchuan
+github_username: west5hell
 
 permalink: /:slug.html
 
@@ -23,7 +23,7 @@ theme_config:
   show_description: false # show blog description in home page
 
 sass:
-  style: :compressed
+  style: compressed
 
 plugins:
   - jekyll-feed

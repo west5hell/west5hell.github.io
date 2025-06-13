@@ -35,3 +35,5 @@ gem 'logger'
 gem 'csv'
 gem 'base64'
 gem 'bigdecimal'
+
+gem "no-style-please"
