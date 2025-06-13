@@ -5,8 +5,6 @@ date: 2025-06-13 18:20:00 +0800
 categories: SwiftUI
 ---
 
-# SwiftUI 中使用 Deque 实现无限轮播图
-
 一个简单的轮播图实现，数据结构使用 Dqeue 而不是传统的 Array
 
 > 需要使用到苹果的集合库 [Swift Collections](https://github.com/apple/swift-collections)
