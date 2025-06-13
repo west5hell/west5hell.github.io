@@ -16,7 +16,7 @@ import Collections
 import SwiftUI
 
 struct InfiniteCarouselDequeView: View {
-    private let originalItems: [String] = ["interzoo_2016", "interzoo_2024", "interzoo_2017", "interzoo_2024", "interzoo_2017"]
+    private let originalItems: [String] = ["image_1", "image_2", "image_3", "image_1", "image_2"]
     @State private var deque: Deque<Int>
     @State private var xOffset: CGFloat = 0
     @GestureState private var dragOffset: CGFloat = 0
