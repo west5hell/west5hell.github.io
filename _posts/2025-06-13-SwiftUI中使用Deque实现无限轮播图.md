@@ -1,8 +1,20 @@
 ---
 layout: post
 title: "SwiftUI 中使用 Deque 实现无限轮播图"
+description: "介绍如何在 SwiftUI 中利用 Deque 数据结构实现无限循环轮播图组件，包括示例代码与实现思路。"
 date: 2025-06-13 18:20:00 +0800
-categories: SwiftUI
+categories:
+  - SwiftUI
+tags:
+  - Swift
+  - SwiftUI
+  - Carousel
+  - Deque
+  - InfiniteScroll
+permalink: /swiftui-deque-carousel/
+# image: /assets/images/swiftui-deque-carousel-cover.png  # 若没有可删除
+# author: Ningv Chia   # 可选
+keywords: "SwiftUI, Deque, 无限轮播图, Infinite Carousel"
 ---
 
 一个简单的轮播图实现，数据结构使用 Dqeue 而不是传统的 Array
