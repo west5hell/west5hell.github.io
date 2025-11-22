@@ -1,92 +1,181 @@
-// -------------- THEME SWITCHER -------------- //
-@mixin dark-appearance {
-  filter: invert(1);
-  img {
-    filter: invert(1);
+/* Reset & Base */
+:root {
+  --bg-color: #0d1117;
+  --card-bg: #161b22;
+  --text-main: #c9d1d9;
+  --text-muted: #8b949e;
+  --accent-color: #58a6ff;
+  --border-color: #30363d;
+  --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
 
-    &.ioda { filter: invert(0); }
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
+.page-content {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.w {
+  width: 100%;
+}
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent-color);
+}
+
+header h1::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: var(--accent-color);
+  border-radius: 2px; /* Logo placeholder */
+}
+
+/* Home Grid */
+.home-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .home-grid {
+    grid-template-columns: 1fr;
   }
 }
 
-body[a="dark"] { @include dark-appearance; }
-
-
-@media (prefers-color-scheme: dark) {
-  body[a="auto"] { @include dark-appearance; }
+/* Main Content */
+.main-column h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
 }
-// -------------------------------------------- //
 
-// bg color is also needed in html in order to
-// block body's background propagation
-// see: https://stackoverflow.com/a/61265706
-html, body { background: white; }
+/* Post Card */
+.post-card {
+  margin-bottom: 3rem;
+}
 
-html { height: 100%; }
+.post-meta {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
 
-body {
-  color: black;
-  font-family: monospace;
-  font-size: 1.3rem;
-  line-height: 1.3;
+.post-title {
+  font-size: 1.8rem;
+  margin: 0.5rem 0;
+  color: #ffffff;
+}
+
+.post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-excerpt {
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.read-more {
+  font-size: 0.9rem;
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.read-more::after {
+  content: '→';
+}
+
+/* Sidebar */
+.sidebar-card {
+  background-color: var(--card-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.sidebar-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
   margin: 0;
-  min-height: 100%;
 }
 
-.post-meta { text-align: right; }
-
-h2, h3, h4, h5, h6 { margin-top: 3rem; }
-
-hr { margin: 2rem 0; }
-
-p { margin: 1rem 0; }
-
-li { margin: 0.4rem 0; }
-
-*:target { background: yellow; }
-
-.w {
-  width: fit-content;
-  max-width: 640px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
+.category-list li {
+  margin-bottom: 0.8rem;
 }
 
-hr {
+.category-list a {
+  color: var(--text-main);
+  transition: color 0.2s;
+}
+
+.category-list a:hover {
+  color: var(--accent-color);
+}
+
+/* Footer */
+footer {
+  margin-top: 4rem;
+  padding: 2rem;
+  border-top: 1px solid var(--border-color);
   text-align: center;
-  border: 0;
-
-  &:before { content: '/////' }
-  &:after { content: attr(data-content) '/////' }
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
 }
 
-table, th, td {
-  width: 100%;
-  border: thin solid black;
-  border-collapse: collapse;
-  padding: 0.4rem;
-}
-
-code {
-  color: white;
-  background: black;
-}
-
-div.highlighter-rouge code {
-  display: block;
-  overflow-x: auto;
-  padding: 1rem;
-}
-
-blockquote {
-  font-style: italic;
-  border: thin solid black;
-  padding: 1rem;
-
-  p { margin: 0; }
-}
-
-img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+.footer-links a {
+  color: var(--text-muted);
+  margin-left: 1rem;
 }

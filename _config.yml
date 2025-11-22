@@ -1,10 +1,10 @@
-title: Playground # name of the site
+title: JekyllBlog # name of the site
 author: Ponter Chia # name of site's author
 email: dozeuto@gmail.com # email of site's author
 # url: https://riggraz.dev # root address of the site
 # baseurl: "/no-style-please" # subpath of the site, e.g. "/blog"
 description: > # description of the site (multiple lines allowed)
-  A (nearly) no-CSS, fast, minimalist Jekyll theme.
+  A modern, dark-themed blog.
 twitter_username: pekanchuan
 github_username: west5hell
 

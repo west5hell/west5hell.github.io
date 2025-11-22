@@ -1,13 +1,17 @@
 ---
 layout: default
 ---
-<header>
-  <h1>{{ site.title }}</h1>
-  {% if site.theme_config.show_description %}
-    <p>{{ site.description }}</p>
-  {% endif %}
-</header>
 
-{% include menu_item.html collection=site.data.menu.entries %}
+<div class="home-grid">
+  <div class="main-column">
+    <h2>From the Blog</h2>
 
-{{ content }}
+    {% for post in site.posts %}
+    {% include post_card.html post=post %}
+    {% endfor %}
+  </div>
+
+  <aside class="sidebar">
+    {% include sidebar.html %}
+  </aside>
+</div>
