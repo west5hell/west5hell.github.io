@@ -2,8 +2,12 @@
 layout: default
 ---
 
-{% include back_link.html %}
+<article class="post-detail">
+    <header class="post-detail-header">
+        <h1 class="post-detail-title">{{ page.title }}</h1>
+    </header>
 
-<h1>{{ page.title }}</h1>
-
-{{ content }}
+    <div class="post-content">
+        {{ content }}
+    </div>
+</article>
