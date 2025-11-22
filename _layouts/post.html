@@ -2,14 +2,16 @@
 layout: default
 ---
 
-{% include back_link.html %}
+<article class="post-detail">
+  <header class="post-detail-header">
+    <h1 class="post-detail-title">{{ page.title }}</h1>
+    <div class="post-detail-meta">
+      {{ page.date | date: "%B %d, %Y" }} •
+      {% assign words = content | number_of_words %}
+      {% if words < 360 %} 1 min read {% else %} {{ words | divided_by: 180 }} min read {% endif %} </div>
+  </header>
 
-<article>
-  <p class="post-meta">
-    <time datetime="{{ page.date }}">{{ page.date | date: site.theme_config.date_format }}</time>
-  </p>
-  
-  <h1>{{ page.title }}</h1>
-
-  {{ content }}
+  <div class="post-content">
+    {{ content }}
+  </div>
 </article>
