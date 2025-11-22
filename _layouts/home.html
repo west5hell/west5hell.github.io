@@ -2,16 +2,10 @@
 layout: default
 ---
 
-<div class="home-grid">
-  <div class="main-column">
-    <h2>From the Blog</h2>
+<div class="home-container">
+  <h2>From the Blog</h2>
 
-    {% for post in site.posts %}
-    {% include post_card.html post=post %}
-    {% endfor %}
-  </div>
-
-  <aside class="sidebar">
-    {% include sidebar.html %}
-  </aside>
+  {% for post in site.posts %}
+  {% include post_card.html post=post %}
+  {% endfor %}
 </div>

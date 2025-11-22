@@ -76,22 +76,14 @@ header h1::before {
   background-color: #ffffff;
 }
 
-/* Home Grid */
-.home-grid {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  gap: 3rem;
+/* Home Container */
+.home-container {
+  max-width: 800px;
+  margin: 0 auto;
   margin-top: 2rem;
 }
 
-@media (max-width: 768px) {
-  .home-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Main Content */
-.main-column h2 {
+.home-container h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #ffffff;
@@ -134,40 +126,6 @@ header h1::before {
 
 .read-more::after {
   content: '→';
-}
-
-/* Sidebar */
-.sidebar-card {
-  background-color: var(--card-bg);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-color);
-}
-
-.sidebar-title {
-  font-size: 1.2rem;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: #ffffff;
-}
-
-.category-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.category-list li {
-  margin-bottom: 0.8rem;
-}
-
-.category-list a {
-  color: var(--text-main);
-  transition: color 0.2s;
-}
-
-.category-list a:hover {
-  color: var(--accent-color);
 }
 
 /* Footer */
